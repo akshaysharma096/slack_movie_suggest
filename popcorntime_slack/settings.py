@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'api'
+    'api',
+    'request_api'
 ]
 
 MIDDLEWARE = [
@@ -68,16 +69,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'popcorntime_slack.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -114,3 +105,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# POPCORNTIME SETTINGS
+BASE_API = 'https://tv-v2.api-fetch.website'
+RANDOM_ENTITIES = '%s/random' % BASE_API
+RANDOM_MOVIE = '%s/movie' % RANDOM_ENTITIES
+RANDOM_SHOW = '%s/show' % RANDOM_ENTITIES
+RANDOM_ANIME = '%s/anime' % RANDOM_ENTITIES
+MOVIE = '%s/movie' % BASE_API
+SHOW = '%s/show' % BASE_API
+ANIME = '%s/anime' % BASE_API
