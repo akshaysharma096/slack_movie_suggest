@@ -1,21 +1,27 @@
-from api.epoch import get_epoch
-
-
 def json_for_random_movie(data):
-    response, attachments, genre, runtime = {}, [], dict(), dict()
+    response, attachments, genre, runtime, rating = {}, [], dict(), dict(), dict()
     synopsis, movie_info, year, fields = dict(), dict(), dict(), list()
-    response['text'] = 'Another movie :the_horns:'
-    synopsis['title'], synopsis['text'], synopsis['color'] = 'Synopsis', data['synopsis'], '#36a64f'
-    synopsis['ts'] = get_epoch()
-    movie_info['title'], movie_info['image_url'] = data['title'], data['images']['poster']
-    movie_info['title_link'], movie_info['color'] = "http://www.imdb.com/title/%s" % data['imdb_id'], '#36a64f'
+    response['response_type'] = 'ephemeral'
+    synopsis['title'], synopsis['text'] = 'Synopsis :spiral_note_pad:', data['synopsis']
+    movie_info['title'], movie_info['image_url'] = '%s :clapper:' % data['title'], data['images']['poster']
+    movie_info['title_link'] = "http://www.imdb.com/title/%s" % data['imdb_id']
     # ---Fields---
-    year['title'], year['value'], year['short'] = "Year", data['year'], False
-    genre['title'], genre['value'], genre['short'] = 'Genre', ', '.join([x.title() for x in data['genres']]), False
-    runtime['title'], runtime['value'], runtime['short'] = 'Runtime', '%s minutes' % data['runtime'], False
-    fields.append(year), fields.append(genre), fields.append(runtime)
+    year['title'], year['value'], year['short'] = "Year", data['year'], True
+    genre['title'], genre['value'], genre['short'] = 'Genre', ', '.join([x.title() for x in data['genres']]), True
+    runtime['title'], runtime['value'], runtime['short'] = 'Runtime', '%s minutes' % data['runtime'], True
+    rating['title'], rating['value'], rating['short'] = 'IMDb rating', data['rating']['percentage'] /10, True
+    fields.append(year), fields.append(genre), fields.append(runtime), fields.append(rating)
+    if data['certification']:
+        certification = dict()
+        certification['title'], certification['value'], certification['short'] = 'Certification', data[
+            'certification'], True
+        fields.append(certification)
     # --Fields end---
     movie_info['fields'] = fields
-    attachments.append(movie_info), attachments.append(synopsis)
+    if data['trailer']:
+        response['text'], response['unfurl_links'] = data['trailer'], True
+        attachments.append(synopsis), attachments.append(movie_info)
+    else:
+        attachments.append(movie_info), attachments.append(synopsis)
     response['attachments'] = attachments
     return response
