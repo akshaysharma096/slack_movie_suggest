@@ -1,2 +1,2 @@
-# popcorntime_slack
+# Random Movie suggestion.
 Slackbot for random movie suggestion.
