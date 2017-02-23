@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'u9#14_&kvx4dkzz^e!^g)v-z2nlfsj+u+sj=mf5agyprg0sy(s'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres'
     'rest_framework',
     'api',
     'request_api'
@@ -67,6 +68,18 @@ TEMPLATES = [
         },
     },
 ]
+
+# DATABASES
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ['RDS_DB_NAME'],
+        'USER': os.environ['RDS_DB_USERNAME'],
+        'PASSWORD': os.environ['RDS_PASSWORD'],
+        'HOST': os.environ['RDS_HOST'],
+        'PORT': os.environ['RDS_PORT'],
+    }
+}
 
 WSGI_APPLICATION = 'popcorntime_slack.wsgi.application'
 
