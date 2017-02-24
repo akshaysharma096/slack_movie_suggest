@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'slack-popcorntime.urls'
+ROOT_URLCONF = 'slack_movie_suggest.urls'
 
 TEMPLATES = [
     {
@@ -89,7 +89,7 @@ else:
         }
     }
 
-WSGI_APPLICATION = 'slack-popcorntime.wsgi.application'
+WSGI_APPLICATION = 'slack_movie_suggest.wsgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "slack-popcorntime.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "slack_movie_suggest.settings")
 
 application = get_wsgi_application()
