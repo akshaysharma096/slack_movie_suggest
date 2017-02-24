@@ -126,6 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # POPCORNTIME SETTINGS
 BASE_API = 'https://tv-v2.api-fetch.website'
