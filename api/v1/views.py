@@ -4,7 +4,7 @@ from django.views.decorators.http import require_POST
 
 from api.json_render import json_for_random_movie
 from api.ultra_json import UltraJsonResponse
-from popcorntime_slack.settings import RANDOM_MOVIE
+from slack_movie_suggest.settings import RANDOM_MOVIE
 from request_api.popcorn_time import popcorn_time
 
 
