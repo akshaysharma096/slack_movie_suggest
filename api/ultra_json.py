@@ -1,5 +1,7 @@
 import ujson
+
 from django.http import HttpResponse
+
 
 def UltraJsonResponse(data, status=None):
     status_code = status if status else 200
