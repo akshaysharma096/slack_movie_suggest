@@ -137,3 +137,6 @@ RANDOM_ANIME = '%s/anime' % RANDOM_ENTITIES
 MOVIE = '%s/movie' % BASE_API
 SHOW = '%s/show' % BASE_API
 ANIME = '%s/anime' % BASE_API
+
+
+X_FRAME_OPTIONS = 'DENY'

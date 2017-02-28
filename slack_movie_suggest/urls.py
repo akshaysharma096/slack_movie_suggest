@@ -16,7 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from api.v1.views import root
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('api.urls')),
+    url(r'^$', root, name='root'),
 ]
+
+handler404 = 'slack_movie_suggest.views.view_404'
