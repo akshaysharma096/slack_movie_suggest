@@ -1,6 +1,8 @@
 appdirs==1.4.2
+brotlipy==0.6.0
 Django==1.10.5
 djangorestframework==3.5.4
+Fabric3==1.13.1.post1
 gunicorn==19.6.0
 psycopg2==2.6.2
 requests==2.13.0
