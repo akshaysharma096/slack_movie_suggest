@@ -8,7 +8,7 @@ from api.json_render import json_for_random_movie
 from api.ultra_json import UltraJsonResponse
 from request_api.popcorn_time import popcorn_time
 from slack_movie_suggest.settings import RANDOM_MOVIE
-from api.v1.webhooks.actions import send_typing
+
 
 @csrf_exempt
 @require_POST
@@ -23,8 +23,6 @@ def get_movie(request, format=None):
 
 @require_GET
 def root(request, format=None):
-    user_id = request.data['sender']['id']
-    send_typing(user_id)
     return UltraJsonResponse({'message': http_codes[200], 'status': 200}, status=200)
 
 

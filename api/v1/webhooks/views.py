@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-
+from .actions import send_typing
 from api.decorators import load_json
 from api.ultra_json import UltraJsonResponse
 from slack_movie_suggest.settings import FACEBOOK_WEBHOOK_TOKEN
@@ -21,5 +21,6 @@ class FacebookView(View):
         return HttpResponse(challenge)
 
     def post(self, request, *args, **kwargs):
-        print(request.data)
+        user_id = request.data['sender']['id']
+        send_typing(user_id)
         return UltraJsonResponse({'success': True}, status=200)
