@@ -3,11 +3,15 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
+from api.decorators import load_json
+from api.ultra_json import UltraJsonResponse
 from slack_movie_suggest.settings import FACEBOOK_WEBHOOK_TOKEN
 
 
-@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator([csrf_exempt, load_json], name='dispatch')
 class FacebookView(View):
+    http_method_names = ['get', 'post']
+
     def get(self, request):
         mode, token, challenge = request.GET.get('hub.mode'), request.GET.get('hub.verify_token'), request.GET.get(
             'hub.challenge')
@@ -16,5 +20,6 @@ class FacebookView(View):
             return HttpResponse("Forbidden", status=403)
         return HttpResponse(challenge)
 
-    # def post(self, request):
-    #     return HttpResponse("Hello")
+    def post(self, request, *args, **kwargs):
+        print(request.data)
+        return UltraJsonResponse({'success': True}, status=200)
