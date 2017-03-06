@@ -16,3 +16,16 @@ def send_typing(user_id):
     headers = {'Content-Type': 'application/json'}
     print(response)
     requests.post(url, ujson.dumps(response), headers=headers)
+
+
+def mark_seen(user_id):
+    url = "https://graph.facebook.com/v2.6/me/messages?access_token=%s" % FACEBOOK_WEBHOOK_TOKEN
+    response = {
+        "recipient": {
+            "id": user_id
+        },
+        "sender_action": "mark_seen"
+    }
+    headers = {'Content-Type': 'application/json'}
+    print(response)
+    requests.post(url, ujson.dumps(response), headers=headers)
