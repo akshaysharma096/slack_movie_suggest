@@ -21,6 +21,7 @@ class FacebookView(View):
         return HttpResponse(challenge)
 
     def post(self, request, *args, **kwargs):
+        print(request.data)
         user_id = request.data['sender']['id']
         send_typing(user_id)
         return UltraJsonResponse({'success': True}, status=200)
