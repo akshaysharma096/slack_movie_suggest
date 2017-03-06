@@ -24,3 +24,5 @@ def get_movie(request, format=None):
 @require_GET
 def root(request, format=None):
     return UltraJsonResponse({'message': http_codes[200], 'status': 200}, status=200)
+
+
